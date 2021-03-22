@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -29,42 +31,36 @@ class SearchPicturesPage extends GetWidget<SearchPicturesController> {
 
   Widget pageAppBar(context) {
     return AppBar(
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          RaisedButton(
+      title: Obx(
+        () => filterButton(controller.selectedDate.value != '', context),
+      ),
+    );
+  }
+
+  Widget filterButton(bool isDateSelected, context) {
+    return isDateSelected
+        ? TextButton(
+            onPressed: () => controller.clearFilters(),
+            child: Row(
+              children: [
+                Icon(
+                  CupertinoIcons.clear,
+                  color: Colors.white,
+                ),
+              ],
+            ),
+          )
+        : TextButton(
             onPressed: () => buildMaterialDatePicker(context),
             child: Row(
               children: [
-                Icon(Icons.calendar_today),
-                SizedBox(width: 10),
-                Text(
-                  'Select date',
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                Icon(
+                  CupertinoIcons.calendar,
+                  color: Colors.white,
                 ),
               ],
             ),
-            color: Colors.white,
-          ),
-          RaisedButton(
-            onPressed: () => SearchPicturesController.to.clearFilters(),
-            child: Row(
-              children: [
-                Icon(Icons.cleaning_services_outlined),
-                SizedBox(width: 10),
-                Text(
-                  'Clear filters',
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            color: Colors.white,
-          ),
-        ],
-      ),
-    );
+          );
   }
 
   Widget searchTextField() {
@@ -86,23 +82,55 @@ class SearchPicturesPage extends GetWidget<SearchPicturesController> {
   Widget listOfPictures() {
     return Obx(
       () => ListView.builder(
-        padding: const EdgeInsets.symmetric(vertical: 15),
+        padding: const EdgeInsets.all(15),
         itemCount: controller.filteredListOfPictures.length,
         itemBuilder: (_, index) => Padding(
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-          child: Card(
-            color: Colors.white,
-            child: Obx(
-              () {
-                return ListTile(
-                  onTap: () =>
-                      Get.to(ShowPicturePage(controller.listOfPictures[index])),
-                  dense: true,
-                  trailing: Icon(Icons.chevron_right),
-                  title: Text(controller.filteredListOfPictures[index].title),
-                  subtitle: Text(controller.filteredListOfPictures[index].date),
-                );
-              },
+          padding: EdgeInsets.all(5),
+          child: Obx(
+            () => GestureDetector(
+              onTap: () =>
+                  Get.to(ShowPicturePage(controller.listOfPictures[index])),
+              child: Column(
+                children: [
+                  CachedNetworkImage(
+                    imageUrl: controller.listOfPictures[index].url,
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) => Center(
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    fit: BoxFit.cover,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    color: Colors.white70,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          controller.filteredListOfPictures[index].title,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          controller.filteredListOfPictures[index].date,
+                          style: TextStyle(fontSize: 12, color: Colors.black87),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -129,8 +157,8 @@ class SearchPicturesPage extends GetWidget<SearchPicturesController> {
       String selectedDate = DateFormat("yyyy-MM-dd")
           .format(DateTime.parse(picked.toString()))
           .toString();
-      SearchPicturesController.to.selectedDate = selectedDate;
-      SearchPicturesController.to.searchPicturesByDate();
+      controller.selectedDate = selectedDate;
+      controller.searchPicturesByDate();
     }
   }
 }

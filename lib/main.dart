@@ -9,6 +9,7 @@ void main() async {
 
   runApp(
     GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       initialBinding: SearchPicturesBinding(),
       home: SearchPicturesPage(),
     ),

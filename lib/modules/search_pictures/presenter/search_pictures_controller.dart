@@ -72,6 +72,7 @@ class SearchPicturesController extends GetxController {
         .where((picture) =>
             picture.title.toLowerCase().contains(title.toLowerCase()))
         .toList();
+    print(result);
     this._filteredListOfPictures.assignAll(result);
   }
 

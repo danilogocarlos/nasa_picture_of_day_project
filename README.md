@@ -1,16 +1,18 @@
-# nasa_picture_of_day_project
+# Projeto Nasa Picture Of The Day
 
-A new Flutter project.
+Este projeto apresenta um aplicativo que lista as últimas imagens lançadas pela API da Nasa. Além disso, o usuário pode realizar uma busca pela imagem de uma data específica e exibir descrições mais detalhadas sobre a imagens.
 
-## Getting Started
+## Skills abordadas
 
-This project is a starting point for a Flutter application.
+- Clean Architecture
+- Gestão de estados e navegação de páginas com GetX
+- Consumo de API Rest utilizando Dio
+- Utilização de ListView e CachedImageNetwork
+- Testes de unidade
 
-A few resources to get you started if this is your first Flutter project:
+## Imagens
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Imagem 01](https://github.com/danilogocarlos/nasa_picture_of_day_project/blob/main/lib/assets/images/img-1.jpeg) 
+![Imagem 02](https://github.com/danilogocarlos/nasa_picture_of_day_project/blob/main/lib/assets/images/img-2.jpeg) 
+![Imagem 03](https://github.com/danilogocarlos/nasa_picture_of_day_project/blob/main/lib/assets/images/img-3.jpeg) 
+![Imagem 04](https://github.com/danilogocarlos/nasa_picture_of_day_project/blob/main/lib/assets/images/img-4.jpeg) 
