@@ -12,7 +12,7 @@ Este projeto apresenta um aplicativo que lista as últimas imagens lançadas pel
 
 ## Imagens
 
-![Imagem 01](https://github.com/danilogocarlos/nasa_picture_of_day_project/blob/main/lib/assets/images/img-1.jpeg) 
-![Imagem 02](https://github.com/danilogocarlos/nasa_picture_of_day_project/blob/main/lib/assets/images/img-2.jpeg) 
-![Imagem 03](https://github.com/danilogocarlos/nasa_picture_of_day_project/blob/main/lib/assets/images/img-3.jpeg) 
-![Imagem 04](https://github.com/danilogocarlos/nasa_picture_of_day_project/blob/main/lib/assets/images/img-4.jpeg) 
+![Imagem 01](https://github.com/danilogocarlos/nasa_picture_of_day_project/blob/master/lib/assets/images/img-1.jpeg) 
+![Imagem 02](https://github.com/danilogocarlos/nasa_picture_of_day_project/blob/master/lib/assets/images/img-2.jpeg) 
+![Imagem 03](https://github.com/danilogocarlos/nasa_picture_of_day_project/blob/master/lib/assets/images/img-3.jpeg) 
+![Imagem 04](https://github.com/danilogocarlos/nasa_picture_of_day_project/blob/master/lib/assets/images/img-4.jpeg) 
